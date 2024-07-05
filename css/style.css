@@ -69,7 +69,7 @@ img {
 @media (min-width: 1140px) {  
   .navigation{
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
   }
 }
 .navigation_link--modifier{
@@ -459,4 +459,43 @@ img {
   background-position: center;
   height: 100%;
   min-height: 400px; 
+}
+
+/*Quotation*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.quotation_header{
+  color: var(--primario);
+}
+
+.quotation_button{
+  background-color: var(--negro);
+  color: var(--blanco);
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.quotation_button:hover{
+  background-color: var(--primario);
+}
+
+.quotation_total{
+  font-weight: 700;
+  font-size: 3rem;
+  color: var(--negro);
 }

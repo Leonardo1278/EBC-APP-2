@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Stone - Home</title>
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap"  crossorigin="crossorigin" as="font">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header>
+        <div>
+            <div class="logo_container">
+                <a class="logo" href="index.html">
+                    <h1 class="logo_name">Texas Stone Creations</h1>
+                </a>
+            </div>
+
+            <nav class="navigation container">
+                <a class="navigation_link" href="index.html">Home</a>
+                <a class="navigation_link" href="suppliers.html">Suppliers</a>
+                <a class="navigation_link" href="material.html">Material</a>
+                <a class="navigation_link" href="myProjects.html">My Projects</a>
+                <a class="navigation_link" href="myClients.html">My Clients</a>
+                <a class="navigation_link" href="overview.html">Overview</a>
+                <a class="navigation_link" href="overview.html">Inventory</a>
+                <a class="navigation_link navigation_link--modifier" href="quotation.html">Quotation</a>
+                <a class="navigation_link" href="#">Log Out</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="quotation_header">Quote Table</h1>
+        <table id="quotationTable">
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Price m^2</th>
+                    <th>Units in m^2</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select class="material">
+                            <option value="Marble">Marble</option>
+                            <option value="Granite">Granite</option>
+                            <option value="Travertine">Travertine</option>
+                            <option value="Slate">Slate</option>
+                            <option value="Onyx">Onyx</option>
+                            <option value="Black Marble">Black Marble</option>
+                            <option value="Quarts">Quarts</option>
+                        </select>
+                    </td>
+                    <td><input type="number" class="price" oninput="calculateTotal()" /></td>
+                    <td><input type="number" class="quantity" oninput="calculateTotal()" /></td>
+                    <td class="total">0</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="quotation_button" onclick="addRow()">Add row +</button>
+        <p class="quotation_total">Total General: $<span id="grandTotal">0</span></p>
+    </main>    
+
+    <footer class="footer">
+        <p class="footer_text">®Texas Stone Creations</p>
+    </footer>
+
+    <script src="js/scriptquotation.js"></script>
+</body>
+</html>
