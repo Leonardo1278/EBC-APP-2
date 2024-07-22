@@ -1,0 +1,149 @@
+{% extends 'index_master.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="p-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div class="bg-white rounded-lg shadow-lg p-4 text-center">
+            <h2 class="text-xl font-bold">Total Sales</h2>
+            <p class="text-2xl font-semibold text-green-600">$50,000</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-4 text-center">
+            <h2 class="text-xl font-bold">Total Projects</h2>
+            <p class="text-2xl font-semibold text-blue-600">120</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-4 text-center">
+            <h2 class="text-xl font-bold">Total Units Sold</h2>
+            <p class="text-2xl font-semibold text-purple-600">1,500</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-4 text-center">
+            <h2 class="text-xl font-bold">Revenue</h2>
+            <p class="text-2xl font-semibold text-red-600">$75,000</p>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-lg p-4 mb-10">
+        <canvas id="salesChart" width="400" height="200"></canvas>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg p-4 mb-10">
+        <canvas id="projectsChart" width="400" height="200"></canvas>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg p-4">
+        <canvas id="unitsSoldChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctxSales = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctxSales, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Sales ($)',
+                data: [5000, 10000, 7500, 15000, 20000, 25000],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Months'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Sales ($)'
+                    }
+                }
+            }
+        }
+    });
+
+    const ctxProjects = document.getElementById('projectsChart').getContext('2d');
+    const projectsChart = new Chart(ctxProjects, {
+        type: 'bar',
+        data: {
+            labels: ['Project A', 'Project B', 'Project C', 'Project D', 'Project E'],
+            datasets: [{
+                label: 'Projects',
+                data: [20, 30, 40, 50, 60],
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Projects'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Number of Projects'
+                    }
+                }
+            }
+        }
+    });
+
+    const ctxUnitsSold = document.getElementById('unitsSoldChart').getContext('2d');
+    const unitsSoldChart = new Chart(ctxUnitsSold, {
+        type: 'pie',
+        data: {
+            labels: ['Unit A', 'Unit B', 'Unit C', 'Unit D', 'Unit E'],
+            datasets: [{
+                label: 'Units Sold',
+                data: [300, 400, 500, 200, 100],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw + ' units';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

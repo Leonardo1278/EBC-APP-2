@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Texas Stone Creations{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<div class="flex">
+    <!-- Sidebar -->
+    <div class="w-64 bg-blue-900 text-white h-screen flex flex-col justify-between">
+        <div>
+            <div class="p-4">
+                <h1 class="text-xl font-bold">Texas Stone</h1>
+                {% if request.user.is_authenticated %}
+                    <p class="mt-2">Hello, {{ request.user.username }}</p>
+                {% else %}
+                    <p class="mt-2">Hello, Guest</p>
+                {% endif %}
+            </div>
+            <nav class="mt-10">
+                <ul>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'index' %}">Dashboard</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'products' %}">Product Management</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'quotations' %}">Quotation Area</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'projects' %}">Project Management</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'customers' %}">Customer Management</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'myquotations' %}">My Quotations</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'settings' %}">Settings</a></li>
+                    <li class="py-2 px-4 hover:bg-blue-700"><a href="{% url 'sign_up' %}">Register User</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="p-4">
+            <button onclick="logout()" class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded">Log Out</button>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 p-10">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+<script>
+    function logout() {
+        window.location.href = '/';
+    }
+</script>
+
+</body>
+</html>
