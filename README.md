@@ -28,3 +28,15 @@ La aplicación ”Texas Stone Creations” está diseñada para satisfacer las n
 *	Servidor: Node.js con Express para la gestion del servidor y las API
 *	Base de Datos: MongoDB para un almacenamiento flexible y escalable de datos
 *	Control de Versiones: Git y GitHub para la gestion del codigo fuente
+# Instalación
+## Requerimientos:
+Python 3.12
+Git Bash
+## Instrucciones
+  * Abrir carpeta vacia con Git Bash
+  * git clone https://github.com/Leonardo1278/EBC-APP-2.git
+# Commit cambios
+  * cd direccion/proyecto/ebc-app-2
+  * git add .
+  * git commit -m "description"
+  * git push origin main
