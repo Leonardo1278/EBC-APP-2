@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Stone Creations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* styles.css */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f5f5f5; /* Fondo suave */
+    overflow: hidden; /* Evitar scroll */
+}
+
+header {
+    background: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f39c12; /* Color mejorado */
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold; /* Mejoramos la tipografía */
+}
+
+.navbar .btn-login {
+    background: #f39c12;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.hero {
+    background: url('static/fondo2.webp') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    height: 40vh; /* Ajustamos la altura */
+}
+
+.hero .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin: 0 0 10px;
+    color: black; /* Cambiar el color del texto a negro */
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 0 0 20px;
+}
+
+.hero .btn-main {
+    background: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.about, .contact {
+    padding: 20px;
+    text-align: center;
+    background: #ffffff; /* Fondo para separar secciones */
+}
+
+.about .container, .contact .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h2, .contact h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.about p, .contact p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.about .images {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.about img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 0;
+}
+
+footer .social-links a {
+    color: white;
+    text-decoration: none;
+}
+
+footer p {
+    margin: 0;
+}
+</style>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">Texas Stone Creations</a>
+                <ul class="nav-links">
+                </ul>
+                <a href="/login" class="btn-login">Login</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Custom Architectural Designs, Products for Interior and Exterior</h1>
+                <p>Residential applications</p>
+                <a href="/login" class="btn-main">Get in Touch</a>
+            </div>
+        </section>
+        <section class="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>Texas Stone Creations offers custom architectural designs and products for both interior and exterior applications. Our products are crafted with the highest quality standards to ensure durability and aesthetic appeal.</p>
+                <div class="images">
+                    <img src="static/inicio1.webp" alt="Image 1">
+                    <img src="static/inicio2.webp" alt="Image 2">
+                    <img src="static/inicio3.webp" alt="Image 3">
+                </div>
+            </div>
+        </section>
+        <section class="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>For more information about our products and services, please get in touch with us.</p>
+                <a href="/login" class="btn-contact">Contact Us</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Texas Stone Creations. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

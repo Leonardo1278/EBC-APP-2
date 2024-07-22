@@ -1,0 +1,139 @@
+{% extends 'index_master.html' %}
+
+{% load static %}
+
+{% block title %}
+    Texas Stone - Crear Cotización
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Subtotal Automáticamente</title>
+    <style>
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-group .prefix {
+            position: absolute;
+            left: 10px;
+        }
+        .input-group input {
+            padding-left: 20px; /* Ajustar según sea necesario para el símbolo de peso */
+        }
+    </style>
+    <script>
+        function addItem() {
+            const items = document.getElementById('items');
+            const newItem = document.createElement('div');
+            newItem.classList.add('flex', 'space-x-2', 'mb-2');
+            newItem.innerHTML = `
+                <input type="text" name="item_name[]" placeholder="Producto/Material" class="flex-1 p-2 border border-gray-300 rounded-md shadow-sm">
+                <input type="number" name="item_quantity[]" placeholder="Cantidad" class="w-20 p-2 border border-gray-300 rounded-md shadow-sm" oninput="calcularSubtotal(this)">
+                <div class="input-group w-32">
+                    <span class="prefix">$</span>
+                    <input type="number" name="item_price[]" placeholder="Precio Unitario" class="w-32 p-2 border border-gray-300 rounded-md shadow-sm" oninput="calcularSubtotal(this)">
+                </div>
+                <p class="w-32 p-2 border border-gray-300 rounded-md shadow-sm subtotal">$ 0.00</p>
+                <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="removeItem(this)">Eliminar</button>
+            `;
+            items.appendChild(newItem);
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+            actualizarTotales();
+        }
+
+        function calcularSubtotal(input) {
+            const itemDiv = input.parentElement.parentElement;
+            const cantidadInput = itemDiv.querySelector('input[name="item_quantity[]"]');
+            const precioInput = itemDiv.querySelector('input[name="item_price[]"]');
+            const subtotalP = itemDiv.querySelector('.subtotal');
+
+            const cantidad = parseFloat(cantidadInput.value) || 0;
+            const precio = parseFloat(precioInput.value) || 0;
+
+            const subtotal = cantidad * precio;
+            subtotalP.innerText = '$ ' + subtotal.toFixed(2);
+
+            actualizarTotales();
+        }
+
+        function actualizarTotales() {
+            const subtotales = document.querySelectorAll('.subtotal');
+            let totalSubtotal = 0;
+
+            subtotales.forEach(subtotalP => {
+                const subtotalText = subtotalP.innerText.replace('$ ', '');
+                totalSubtotal += parseFloat(subtotalText) || 0;
+            });
+
+            const taxes = totalSubtotal * 0.16; // Suponiendo un impuesto del 15%
+            const total = totalSubtotal + taxes;
+
+            document.getElementById('subtotal').innerText = totalSubtotal.toFixed(2);
+            document.getElementById('taxes').innerText = taxes.toFixed(2);
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+
+        window.onload = function() {
+            const cantidadInputs = document.querySelectorAll('input[name="item_quantity[]"]');
+            const precioInputs = document.querySelectorAll('input[name="item_price[]"]');
+            
+            cantidadInputs.forEach(input => input.addEventListener('input', function() { calcularSubtotal(input); }));
+            precioInputs.forEach(input => input.addEventListener('input', function() { calcularSubtotal(input); }));
+        };
+    </script>
+</head>
+<body>
+    <div class="container mx-auto py-8">
+        <h2 class="text-3xl font-bold mb-6">Crear Nueva Cotización</h2>
+        
+        <form action="{% url 'quotations' %}" method="POST">
+            {% csrf_token %}
+            
+            <!-- Información del Cliente -->
+            <div class="mb-6">
+                <label for="client" class="block text-sm font-medium text-gray-700">Cliente</label>
+                <input type="text" name="client" id="client" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm w-full">
+            </div>
+            
+            <!-- Ítems de la Cotización -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700">Ítems</label>
+                <div id="items">
+                    <div class="flex space-x-2 mb-2">
+                        <input type="text" name="item_name[]" id="idName" placeholder="Producto/Material" class="flex-1 p-2 border border-gray-300 rounded-md shadow-sm">
+                        <input type="number" name="item_quantity[]" id="idquantity" placeholder="m2" class="w-20 p-2 border border-gray-300 rounded-md shadow-sm" oninput="calcularSubtotal(this)">
+                        <div class="input-group w-32">
+                            <span class="prefix">$</span>
+                            <input type="number" name="item_price[]" id="idprice" placeholder="Precio" class=" w-32 p-2 border border-gray-300 rounded-md shadow-sm" oninput="calcularSubtotal(this)">
+                        </div>
+                        <p class="w-32 p-2 border border-gray-300 rounded-md shadow-sm subtotal">$ 0.00</p>
+                        <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="removeItem(this)">Eliminar</button>
+                    </div>
+                </div>
+                <button type="button" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md" onclick="addItem()">Añadir Ítem</button>
+            </div>
+            
+            <!-- Resumen de la Cotización -->
+            <div class="mb-6">
+                <h3 class="text-xl font-bold">Resumen</h3>
+                <p>Subtotal: $ <span id="subtotal">0.00</span></p>
+                <p>Impuestos: $ <span id="taxes">0.00</span></p>
+                <p>Total: $ <span id="total">0.00</span></p>
+            </div>
+            
+            <!-- Botón de Enviar -->
+            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear Cotización</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

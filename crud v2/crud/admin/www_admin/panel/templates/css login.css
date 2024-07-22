@@ -1,0 +1,64 @@
+:root {
+    --background-light: #ffffff;
+    --background-dark: #0a0a0a;
+    --primary-color: #3b82f6;
+    --secondary-color: #f43f5e;
+    --text-color-light: #111827;
+    --text-color-dark: #f9fafb;
+  }
+  
+  body {
+    background-color: var(--background-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark {
+    background-color: var(--background-dark);
+    color: var(--text-color-dark);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-container {
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+  }
+  
+  .form-container button {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: var(--primary-color-hover);
+  }
+  
+  .form-container a {
+    color: var(--secondary-color);
+    text-decoration: none;
+  }
+  
+  .form-container a:hover {
+    text-decoration: underline;
+  }
+  

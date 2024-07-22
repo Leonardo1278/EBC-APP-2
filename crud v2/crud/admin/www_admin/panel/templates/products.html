@@ -1,0 +1,209 @@
+{% extends 'index_master.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="product-grid grid grid-cols-3 gap-4">
+    <!-- Producto 1 -->
+    <div class="product-card bg-white rounded-lg shadow-lg p-4 transform transition duration-500 hover:scale-105">
+        <div class="product-image-container relative bg-gray-100 p-2 cursor-pointer">
+            <img src="{% static 'FrWork/marble.jpeg' %}" alt="Marble" class="product-image w-full h-auto">
+        </div>
+        <div class="product-info mt-4">
+            <h2 class="product-title text-xl font-bold">Marble </h2>
+            <p class="product-price text-lg font-semibold text-gray-800">Price: $100</p>
+            <p class="product-units text-sm text-green-600">Units Sold: 50</p>
+            <p class="product-description text-sm text-gray-600"></p>
+        </div>
+    </div>
+    <!-- Producto 2 -->
+    <div class="product-card bg-white rounded-lg shadow-lg p-4 transform transition duration-500 hover:scale-105">
+        <div class="product-image-container relative bg-gray-100 p-2 cursor-pointer">
+            <img src="{% static 'FrWork/granite.jpg' %}" alt="Granite" class="product-image w-full h-auto">
+        </div>
+        <div class="product-info mt-4">
+            <h2 class="product-title text-xl font-bold">Granite </h2>
+            <p class="product-price text-lg font-semibold text-gray-800">Price: $200</p>
+            <p class="product-units text-sm text-green-600">Units Sold: 30</p>
+            <p class="product-description text-sm text-gray-600"></p>
+        </div>
+    </div>
+    <!-- Producto 3 -->
+    <div class="product-card bg-white rounded-lg shadow-lg p-4 transform transition duration-500 hover:scale-105">
+        <div class="product-image-container relative bg-gray-100 p-2 cursor-pointer">
+            <img src="{% static 'FrWork/travertine.jpg' %}" alt="Travertine" class="product-image w-full h-auto">
+        </div>
+        <div class="product-info mt-4">
+            <h2 class="product-title text-xl font-bold">Travertine </h2>
+            <p class="product-price text-lg font-semibold text-gray-800">Price: $150</p>
+            <p class="product-units text-sm text-green-600">Units Sold: 20</p>
+            <p class="product-description text-sm text-gray-600"></p>
+        </div>
+    </div>
+    <!-- Producto 4 -->
+    <div class="product-card bg-white rounded-lg shadow-lg p-4 transform transition duration-500 hover:scale-105">
+        <div class="product-image-container relative bg-gray-100 p-2 cursor-pointer">
+            <img src="{% static 'FrWork/slate.jpeg' %}" alt="Slate" class="product-image w-full h-auto">
+        </div>
+        <div class="product-info mt-4">
+            <h2 class="product-title text-xl font-bold">Slate </h2>
+            <p class="product-price text-lg font-semibold text-gray-800">Price: $180</p>
+            <p class="product-units text-sm text-green-600">Units Sold: 15</p>
+            <p class="product-description text-sm text-gray-600"></p>
+        </div>
+    </div>
+    <!-- Producto 5 -->
+    <div class="product-card bg-white rounded-lg shadow-lg p-4 transform transition duration-500 hover:scale-105">
+        <div class="product-image-container relative bg-gray-100 p-2 cursor-pointer">
+            <img src="{% static 'FrWork/limstone.jpg' %}" alt="Limestone" class="product-image w-full h-auto">
+        </div>
+        <div class="product-info mt-4">
+            <h2 class="product-name text-xl font-bold">Limestone </h2>
+            <p class="product-price text-lg font-semibold text-gray-800">Price: $130</p>
+            <p class="product-text-sm text-green-600">Units Sold: 25</p>
+            <p class="product-description text-sm text-gray-600">supppp</p>
+        </div>
+    </div>
+    <!-- Producto 6 -->
+    <div class="product-card bg-white rounded-lg shadow-lg p-4 transform transition duration-500 hover:scale-105">
+        <div class="product-image-container relative bg-gray-100 p-2 cursor-pointer">
+            <img src="{% static 'FrWork/sandstone.jpeg' %}" alt="Sandstone" class="product-image w-full h-auto">
+        </div>
+        <div class="product-info mt-4">
+            <h2 class="product-title text-xl font-bold">Sandstone </h2>
+            <p class="product-price text-lg font-semibold text-gray-800">Price: $120</p>
+            <p class="product-units text-sm text-green-600">Units Sold: 40</p>
+            <p class="product-description text-sm text-gray-600"></p>
+        </div>
+    </div>
+
+
+<!-- Modal -->
+<div id="imageModal" class="modal fixed z-50 inset-0 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="modal-overlay absolute inset-0 bg-black opacity-50"></div>
+            <div class="modal-container bg-white w-auto mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                <div class="modal-content p-4 relative">
+                <span class="close text-black text-2xl cursor-pointer absolute top-2 right-4">&times;</span>
+                <img class="modal-image max-w-full h-auto" id="img01">
+                    <div id="caption" class="text-center text-sm text-gray-600 mt-2"></div>
+                        <div id="info" class="text-center text-sm text-gray-600 mt-2"></div>
+                            <div id="full-description" class="text-center text-sm text-gray-600 mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed; /* Fixed positioning for modal overlay */
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto; /* Enable scrolling within modal */
+    }
+    
+    .modal-content {
+        position: fixed; /* Fixed positioning for modal content */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5); /* Center and start scaled down */
+        background-color: #fefefe;
+        padding: 25px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 700px;
+        animation: zoomIn 0.5s ease forwards; /* Animation for zooming in */
+    }
+    
+    @keyframes zoomIn {
+        from {
+            transform: translate(-50%, -50%) scale(0.5); /* Start position and scale */
+        }
+        to {
+            transform: translate(-50%, -50%) scale(1); /* End position and scale */
+        }
+    }
+    
+    .close {
+        position: absolute;
+        top: -6px; /* Adjusted top position for close button */
+        right: 0px; /* Adjusted right position for close button */
+        color: #271b1b;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    #caption, #info, #full-description {
+        text-align: center;
+        color: #000000;
+        padding: 10px 0;
+    }
+    
+    @media only screen and (max-width: 700px) {
+        .modal-content {
+            width: 100%;
+        }
+    }
+</style>
+
+
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("imageModal");
+
+    // Get the modal image, caption, info, and full description elements
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var infoText = document.getElementById("info");
+    var descriptionText = document.getElementById("full-description");
+
+    // Get all client cards
+    var clientCards = document.querySelectorAll(".product-card");
+
+    clientCards.forEach(card => {
+        card.onclick = function() {
+            modal.style.display = "flex";
+            modalImg.src = this.querySelector(".product-image").src;
+            captionText.innerHTML = this.querySelector(".product-title").innerText;
+            infoText.innerHTML = this.querySelector(".product-price").innerText;
+            descriptionText.innerHTML = this.querySelector(".product-product-units").innerText;
+        }
+    });
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() { 
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+{% endblock %}
+
+
